@@ -56,6 +56,7 @@
 		96912F8127651F4D0038C503 /* MVPTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				96912F97276520F90038C503 /* MainScreen */,
 				96912F9627651FC00038C503 /* Resources */,
 			);
 			path = MVPTemplate;
@@ -66,13 +67,44 @@
 			children = (
 				96912F8227651F4D0038C503 /* AppDelegate.swift */,
 				96912F8427651F4D0038C503 /* SceneDelegate.swift */,
-				96912F8627651F4D0038C503 /* ViewController.swift */,
 				96912F8827651F4D0038C503 /* Main.storyboard */,
 				96912F8B27651F510038C503 /* Assets.xcassets */,
 				96912F9027651F510038C503 /* Info.plist */,
 				96912F8D27651F510038C503 /* LaunchScreen.storyboard */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		96912F97276520F90038C503 /* MainScreen */ = {
+			isa = PBXGroup;
+			children = (
+				96912F9A2765212F0038C503 /* Presenter */,
+				96912F992765211C0038C503 /* Views */,
+				96912F98276521100038C503 /* Models */,
+			);
+			path = MainScreen;
+			sourceTree = "<group>";
+		};
+		96912F98276521100038C503 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		96912F992765211C0038C503 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				96912F8627651F4D0038C503 /* ViewController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		96912F9A2765212F0038C503 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
