@@ -7,8 +7,8 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-    private var presetner: Int!
+class ViewController: UIViewController, PresenterMainScreenProtocol {
+    private var presetner = PresenterMainScreen()
     private var mainScreenWord: String?
     //    UI
     var button: UIButton!
@@ -17,10 +17,12 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        presetner.setUpViewDelegate(delegate: self)
         view.backgroundColor = .systemGray
         setUpButton()
         setUpField()
         setUpLabel()
+        presetner.getText()
     }
     
     private func setUpButton() {
@@ -38,6 +40,7 @@ class ViewController: UIViewController {
         button.layer.backgroundColor = UIColor.red.cgColor
         button.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMaxYCorner]
         button.layer.cornerRadius = 10
+        button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
     }
     
     private func setUpField() {
@@ -77,20 +80,12 @@ class ViewController: UIViewController {
     }
     
     @objc private func buttonAction() {
-        setUpButtonAction()
-    }
-    
-    //    Funcs for the presenter
-    func setUpButtonAction() {
-        
-    }
-    
-    func saveTest() {
-        
+        guard let text = textField.text else { return }
+        presetner.setText(text: text)
+        presetner.getText()
     }
     
     func updateWord(text: String) {
-        
+        label.text = text
     }
 }
-
