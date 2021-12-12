@@ -9,15 +9,12 @@ import UIKit
 
 typealias mainScreenPresenterDelegate = PresenterMainScreenProtocol & UIViewController
 
-class PresenterMainScreen {
+final class PresenterMainScreen {
     
     private weak var delegate: mainScreenPresenterDelegate?
     
-    func setText(text: String) {
+    internal func setText(text: String) {
         UserDefaults.standard.setValue(text, forKey: "text")
-    }
-    
-    func getText() {
         guard let text = UserDefaults.standard.string(forKey: "text") else {
             return
         }
@@ -25,7 +22,7 @@ class PresenterMainScreen {
         delegate?.updateWord(text: text)
     }
     
-    func setUpViewDelegate(delegate: mainScreenPresenterDelegate) {
+    internal func setUpViewDelegate(delegate: mainScreenPresenterDelegate) {
         self.delegate = delegate
     }
 }
