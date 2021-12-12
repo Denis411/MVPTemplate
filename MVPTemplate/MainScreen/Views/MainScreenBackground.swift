@@ -7,11 +7,17 @@
 
 import UIKit
 
+protocol MainScreenBackgroundDataSource: AnyObject {
+    func textForLabel(label: UILabel) -> String
+}
+
 final class MainScreenBackground: UIView {
     private var button: UIButton!
     private var textField: UITextField!
     private var label: UILabel!
     private var closure: (() -> Void)?
+    
+    weak var dataSource: MainScreenBackgroundDataSource?
     
     init() {
         super.init(frame: .zero)
@@ -25,6 +31,7 @@ final class MainScreenBackground: UIView {
         setUpButton()
         setUpField()
         setUpLabel()
+        configure()
     }
 //    MARK: - Constraint methods
     
@@ -85,18 +92,22 @@ final class MainScreenBackground: UIView {
     @objc private func buttonAction() {
         guard let closureNotNil = closure else { return }
         closureNotNil()
+        configure()
     }
     
     internal func setUpButtonAction(closure: @escaping () -> Void) {
         self.closure = closure
     }
     
-    internal func setUpLabelText(text: String) {
-        self.label.text = text
-    }
-    
     internal func getTextFieldText() -> String {
         guard let text = textField.text else { return "No text was entered." }
         return text
+    }
+    
+//   MARK: - DataSource
+    
+    private func configure() {
+        guard let ds = dataSource else { return }
+        label.text = ds.textForLabel(label: label)
     }
 }

@@ -10,6 +10,7 @@ import UIKit
 class MainScreen: UIViewController, PresenterMainScreenProtocol {
     private var presetner = PresenterMainScreen()
     var backgroundView: MainScreenBackground!
+    private var text: String?
     
     override func loadView() {
         backgroundView = MainScreenBackground()
@@ -19,6 +20,7 @@ class MainScreen: UIViewController, PresenterMainScreenProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         presetner.setUpViewDelegate(delegate: self)
+        backgroundView.dataSource = self
         view.backgroundColor = .systemGray
         backgroundView.setUpButtonAction(closure: setUpButtonAction)
     }
@@ -26,10 +28,16 @@ class MainScreen: UIViewController, PresenterMainScreenProtocol {
     private func setUpButtonAction() {
         let text = backgroundView.getTextFieldText()
         presetner.setText(text: text)
-        presetner.getText()
     }
     
     func updateWord(text: String) {
-        backgroundView.setUpLabelText(text: text)
+        self.text = text
+    }
+}
+
+extension MainScreen: MainScreenBackgroundDataSource {
+    func textForLabel(label: UILabel) -> String {
+        guard let text = text else { return "" }
+        return text
     }
 }
