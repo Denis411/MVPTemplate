@@ -9,7 +9,6 @@ import UIKit
 
 class ViewController: UIViewController, PresenterMainScreenProtocol {
     private var presetner = PresenterMainScreen()
-    private var mainScreenWord: String?
     //    UI
     var button: UIButton!
     var textField: UITextField!
@@ -76,7 +75,6 @@ class ViewController: UIViewController, PresenterMainScreenProtocol {
             ])
         label.layer.backgroundColor = UIColor.systemGray.cgColor
         label.textAlignment = .center
-        label.text = mainScreenWord ?? "No value yet"
     }
     
     @objc private func buttonAction() {
