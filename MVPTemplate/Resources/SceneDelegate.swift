@@ -12,7 +12,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        guard let _ = (scene as? UIWindowScene) else { return }
+        guard let sceneOne = (scene as? UIWindowScene) else { return }
+        let vc = MainScreen()
+        window = UIWindow(windowScene: sceneOne)
+        window?.rootViewController = vc
+        window?.makeKeyAndVisible()
     }
 }
 
